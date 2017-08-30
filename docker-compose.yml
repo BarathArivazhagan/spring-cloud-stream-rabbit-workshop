@@ -1,0 +1,41 @@
+version: '3'
+services:  
+  rabbitmq:
+   build: ./docker-rabbitmq
+   ports:
+      - "5673:5672"
+      - "15673:15672"
+  healthcheck:
+    test: ["CMD", "docker-health"]
+    interval: 10s
+    timeout: 10s
+    retries: 10
+  rabbit-stream-source:
+    build: ./rabbit-stream-source
+    ports:
+      - "12000:12000"
+    depends_on:
+      - rabbitmq
+    environment:
+      SPRING_CLOUD_BINDERS_RABBITMQ_ENVIRONMENT_SPRING_RABBITMQ_HOST: rabbitmq
+  rabbit-stream-processor:
+    build: ./rabbit-stream-processor
+    ports:
+      - "12001:12001"
+    depends_on:
+      - rabbitmq
+      - rabbit-stream-source
+    environment:
+      SPRING_CLOUD_BINDERS_RABBITMQ_ENVIRONMENT_SPRING_RABBITMQ_HOST: rabbitmq
+  rabbit-stream-sink:
+    build: ./rabbit-stream-sink
+    ports:
+      - "12002:12002"
+    depends_on:
+      - rabbitmq
+      - rabbit-stream-processor
+    environment:
+      SPRING_CLOUD_BINDERS_RABBITMQ_ENVIRONMENT_SPRING_RABBITMQ_HOST: rabbitmq
+
+
+
