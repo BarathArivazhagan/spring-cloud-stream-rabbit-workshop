@@ -20,4 +20,6 @@ public class SinkApplication {
 	  public void processMessage(Message message) {
 	     System.out.println("Message sinked "+message);
 	  }
+	 
+	 
 }
