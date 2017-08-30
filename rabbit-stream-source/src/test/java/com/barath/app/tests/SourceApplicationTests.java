@@ -1,4 +1,4 @@
-package com.barath.cloud.stream.samples.rabbitstreamsource;
+package com.barath.app.tests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RabbitStreamSourceApplicationTests {
+public class SourceApplicationTests {
 
 	@Test
 	public void contextLoads() {
