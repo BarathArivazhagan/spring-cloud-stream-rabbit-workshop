@@ -1,0 +1,26 @@
+server:
+  port: 12002
+
+spring:
+  application:
+    name: rabbitmq-sink
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: processor-stream-output
+          group: processor-group
+          binder: rabbitmq
+        output:
+          destination: processor-stream-output
+          binder: rabbitmq
+      binders:
+        rabbitmq:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
