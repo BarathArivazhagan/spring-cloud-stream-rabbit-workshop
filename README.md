@@ -45,7 +45,7 @@ This repo contains applications demonstrating the use case of spring cloud strea
 ./mvnw clean install
 ```
 
-* Run as Docker containers: 
+## Run as Docker containers: 
 
 * To run as docker containers: 
 
